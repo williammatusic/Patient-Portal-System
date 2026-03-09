@@ -36,6 +36,12 @@ public class LoginTest {
     }
 
     @Test
+    void wrongUsernameShouldDenyLogin() throws SQLException {
+        boolean canLogin = checkCredentials("nonexistent", "testpass123");
+        assertFalse(canLogin, "Wrong username should fail");
+    }
+
+    @Test
     void unknownUserShouldFail() throws SQLException {
         boolean canLogin = checkCredentials("nonexistent", "anything");
         assertFalse(canLogin, "User that does not exist should fail");
